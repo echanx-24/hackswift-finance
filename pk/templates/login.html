@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="login-page">
+        <div class="login-module">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div>
+                        {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <h1 id="login-title">Finance Dashboard</h1>
+            <h3>Please Login</h3>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.username.label (class="username-label") }}
+                    {% if form.username.errors %}
+                        {{ form.username(class="username", autocomplete="off") }}
+                    {% else %}
+                        {{ form.username(class="username", autocomplete="off") }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.password.label (class="password-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password (class="password") }}
+                    {% else %}
+                        {{ form.password (class="password") }}
+                    {% endif %}
+                </div>
+                <div class="wrap">
+                        {{ form.submit (class="btn") }}
+                </div>
+            </form>
+            <div>
+                <a href="{{ url_for('reset_request')}}" style="font: 14px Arial;">
+                    Forgot Password?
+                </a>
+            </div>
+            <a href="{{ url_for('register')}}" style="font: 14px Arial;">
+                Click here to register for an account
+            </a>
+        </div>
+    </div>
+{% endblock content %}
